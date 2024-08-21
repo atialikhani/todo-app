@@ -28,18 +28,18 @@
 # window.read()
 # window.close()
 
-
+#
 while True:
     event, values = window.read()
     match event:
         case "Convert":
-            km = values["kms"]
-            result = km_to_miles(km)
-            window['output'].update(value=result)
+            try:
+                km = float(values["kms"])
+                result = km_to_miles(km)
+                window['output'].update(value=result)
+            except ValueError:
+                window['output'].update(value="Please enter a valid number")
         case sg.WIN_CLOSED:
             break
 
 window.close()
-However, when the user runs the code above, enters a number, and presses the Convert button, the program stops, and an error is displayed in the command line:
-
-TypeError: can't multiply sequence by non-int of type 'float'
